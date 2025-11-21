@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset de IP no Windows - Blog do Rafa</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <style>
+        .copy-box {
+            background: #2d3748;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            position: relative;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #3cb371;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .copy-btn:hover {
+            background: #2d8a5d;
+        }
+        
+        .step {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #3cb371;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: #1a5f3e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .tip {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .intro-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #1a5f3e;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2><a href="../index.html" style="color: white; text-decoration: none;">Blog do Rafa 🤓</a></h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#conteudo">Conteúdo</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <div class="container">
+            <h1>💻 Reset de IP no Windows - Guia Completo</h1>
+            
+            <!-- INTRODUÇÃO ADICIONADA -->
+            <section class="intro-section">
+                <h2>📋 Introdução</h2>
+                <p>O <strong>reset de configurações de rede</strong> é uma técnica essencial para solucionar diversos problemas de conectividade no Windows. Este procedimento é especialmente útil quando você enfrenta:</p>
+                
+                <ul>
+                    <li><strong>Problemas de conexão com a internet</strong> - Sites não carregam ou conexão instável</li>
+                    <li><strong>Conflitos de IP</strong> - Dois dispositivos com o mesmo endereço na rede</li>
+                    <li><strong>Erros de DNS</strong> - Sites não são resolvidos corretamente</li>
+                    <li><strong>IP automático incorreto</strong> - Endereço começando com 169.254.x.x</li>
+                    <li><strong>Problemas após mudança de rede</strong> - Troca de roteador ou provedor</li>
+                </ul>
+                
+                <h3>🔧 O que você vai precisar:</h3>
+                <ul>
+                    <li>Computador com Windows (7, 8, 10 ou 11)</li>
+                    <li>Acesso ao <strong>Prompt de Comando</strong> (CMD)</li>
+                    <li>Para alguns comandos: <strong>Permissões de Administrador</strong></li>
+                    <li>Conexão física com a rede (cabo Ethernet ou Wi-Fi ativo)</li>
+                </ul>
+                
+                <div class="warning">
+                    <strong>⚠️ Importante:</strong> Durante o processo de renovação de IP, você pode perder temporariamente a conexão com a internet por alguns segundos. Certifique-se de não estar em chamadas importantes ou transferindo arquivos críticos.
+                </div>
+            </section>
+
+            <div class="warning">
+                <strong>⚠️ Atenção:</strong> Alguns comandos exigem permissões de administrador. Você pode perder temporariamente a conexão com a internet durante o processo.
+            </div>
+
+            <!-- Método 1: IP Release/Renew -->
+            <section class="step">
+                <h2><span class="step-number">1</span> Método Básico: Release e Renew</h2>
+                <p>Este é o método mais comum para renovar o endereço IP.</p>
+                
+                <h3>Passo a Passo:</h3>
+                
+                <div class="copy-box">
+                    ipconfig /release
+                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /release')">Copiar</button>
+                </div>
+                <p><strong>O que faz:</strong> Libera o endereço IP atual</p>
+                
+                <div class="copy-box">
+                    ipconfig /renew
+                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /renew')">Copiar</button>
+                </div>
+                <p><strong>O que faz:</strong> Solicita um novo endereço IP ao servidor DHCP</p>
+                
+                <div class="tip">
+                    <strong>💡 Dica:</strong> Execute os comandos em sequência. Primeiro o <code>/release</code>, depois o <code>/renew</code>.
+                </div>
+            </section>
+
+            <!-- Método 2: Reset Completo TCP/IP -->
+            <section class="step">
+                <h2><span class="step-number">2</span> Método Avançado: Reset de TCP/IP</h2>
+                <p>Use este método quando o básico não resolver problemas de conexão.</p>
+                
+                <h3>Execute como Administrador:</h3>
+                
+                <div class="copy-box">
+                    netsh int ip reset
+                    <button class="copy-btn" onclick="copyToClipboard('netsh int ip reset')">Copiar</button>
+                </div>
+                <p><strong>O que faz:</strong> Reseta toda a pilha TCP/IP do Windows</p>
+                
+                <div class="warning">
+                    <strong>⚠️ Importante:</strong> Este comando requer prompt de comando como administrador. Reinicie o computador após executá-lo.
+                </div>
+            </section>
+
+            <!-- Método 3: Flush DNS -->
+            <section class="step">
+                <h2><span class="step-number">3</span> Limpeza de Cache DNS</h2>
+                <p>Problemas de DNS também podem afetar a conectividade.</p>
+                
+                <div class="copy-box">
+                    ipconfig /flushdns
+                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /flushdns')">Copiar</button>
+                </div>
+                <p><strong>O que faz:</strong> Limpa o cache de resolução de nomes DNS</p>
+            </section>
+
+            <!-- Método 4: Reset Completo -->
+            <section class="step">
+                <h2><span class="step-number">4</span> Sequência Completa de Reset</h2>
+                <p>Para problemas persistentes, execute esta sequência completa:</p>
+                
+                <div class="copy-box">
+                    ipconfig /release<br>
+                    ipconfig /flushdns<br>
+                    netsh int ip reset<br>
+                    netsh winsock reset<br>
+                    ipconfig /renew
+                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /release\nipconfig /flushdns\nnetsh int ip reset\nnetsh winsock reset\nipconfig /renew')">Copiar Tudo</button>
+                </div>
+                
+                <div class="warning">
+                    <strong>🔧 Comando Adicional:</strong> <code>netsh winsock reset</code> reseta a catalogação Winsock, que pode resolver problemas de socket.
+                </div>
+            </section>
+
+            <!-- Verificação -->
+            <section class="step">
+                <h2><span class="step-number">5</span> Verificando o Novo IP</h2>
+                <p>Após os comandos, verifique seu novo endereço IP:</p>
+                
+                <div class="copy-box">
+                    ipconfig /all
+                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /all')">Copiar</button>
+                </div>
+                
+                <p>Procure por estas informações na saída do comando:</p>
+                <ul>
+                    <li><strong>IPv4 Address:</strong> Seu endereço IP local</li>
+                    <li><strong>Default Gateway:</strong> Roteador da rede</li>
+                    <li><strong>DNS Servers:</strong> Servidores de DNS</li>
+                </ul>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section class="step">
+                <h2><span class="step-number">6</span> Solução de Problemas Comuns</h2>
+                
+                <h3>❌ "A mídia está desconectada"</h3>
+                <p><strong>Solução:</strong> Verifique se o cabo de rede está conectado ou se o Wi-Fi está ativo.</p>
+                
+                <h3>❌ IP começando com 169.254.x.x</h3>
+                <p><strong>Solução:</strong> O Windows não conseguiu contactar o servidor DHCP. Verifique:</p>
+                <ul>
+                    <li>Conexão com o roteador</li>
+                    <li>Serviço DHCP no roteador</li>
+                    <li>Firewall bloqueando comunicação</li>
+                </ul>
+                
+                <h3>❌ Comandos não funcionam</h3>
+                <p><strong>Solução:</strong> Execute o Prompt de Comando como <strong>Administrador</strong>.</p>
+            </section>
+
+            <!-- Dica Final -->
+            <div class="tip">
+                <strong>🎯 Dica Profissional:</strong> Para a maioria dos problemas de rede, a sequência <code>ipconfig /release</code> → <code>ipconfig /renew</code> → <code>ipconfig /flushdns</code> resolve 90% dos casos.
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Blog do Rafa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Feedback visual
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copiado!';
+                btn.style.background = '#1a5f3e';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#3cb371';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Erro ao copiar: ', err);
+                alert('Erro ao copiar o comando. Tente manualmente.');
+            });
+        }
+        
+        // Adiciona numeração automática aos passos
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step h2 .step-number');
+            steps.forEach((step, index) => {
+                step.textContent = index + 1;
+            });
+        });
+    </script>
+</body>
+</html>

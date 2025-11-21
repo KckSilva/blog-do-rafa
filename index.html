@@ -3,30 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog do Rafa</title>
+    <title>Blog do Rafa - Tecnologia & Carreira</title>
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-    <header>
-        <h1>Blog do Rafa</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>Blog do Rafa 🤓</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#conteudo">Conteúdo</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <section id="home">
-            <h2>Bem-vindo ao Meu Blog!</h2>
-            <p>Este Ã© o meu blog pessoal.</p>
-            <button id="meuBotao">Clique Aqui!</button>
-        </section>
-    </main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Transforme sua <span class="highlight">Carreira</span> em Tecnologia
+                </h1>
+                <p class="hero-description">
+                    Este é meu blog onde falo sobre tecnologia, experiências profissionais e posto meus resumos sobre estudos e certificações.
+                </p>
+                <p class="hero-welcome">
+                    <strong>Seja bem vindo! 😎</strong>
+                </p>
+            </div>
+        </div>
+    </section>
 
-    <script src="src/utils.js"></script>
+    <!-- Conteúdo -->
+    <section id="conteudo" class="content">
+        <div class="container">
+            <h2 class="section-title">O que você encontra aqui</h2>
+            <div class="content-grid">
+                <!-- ⚠️ APENAS ESTE CARD FOI ALTERADO ⚠️ -->
+                <a href="paginas/index.html" class="content-card">
+                    <div class="card-icon">📚</div>
+                    <h3>Documentações Técnicas</h3>
+                    <p>Acesse todas as documentações: Reset de IP, Mapeamento de Pastas e mais.</p>
+                </a>
+                <!-- FIM DA ALTERAÇÃO -->
+                <a href="paginas/resumos-estudos.html" class="content-card">
+                    <div class="card-icon">📚</div>
+                    <h3>Resumos de Estudos</h3>
+                    <p>Local onde compartilho minhas anotações dos meus estudos e certificações.</p>
+                </a>
+                <a href="paginas/gestao-ti.html" class="content-card">
+                    <div class="card-icon">💼</div>
+                    <h3>Gestão de Tecnologia da informação</h3>
+                    <p>Falo um pouco sobre casos reais e lições aprendidas no dia a dia profissional.</p>
+                </a>
+                <a href="paginas/dicas-carreira.html" class="content-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Dicas de Carreira</h3>
+                    <p>Estratégias para crescimento e desenvolvimento profissional e pessoal.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Blog do Rafa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
     <script src="src/script.js"></script>
 </body>
 </html>

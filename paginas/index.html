@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentações - Blog do Rafa</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <style>
+        .docs-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .doc-item {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #3cb371;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .doc-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .doc-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .doc-link h3 {
+            color: #1a5f3e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-link p {
+            color: #6c757d;
+            margin: 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #1a5f3e;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .empty-message {
+            text-align: center;
+            padding: 3rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2><a href="../index.html" style="color: white; text-decoration: none;">Blog do Rafa 🤓</a></h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#conteudo">Conteúdo</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <div class="container">
+            <a href="../index.html" class="back-link">← Voltar para Home</a>
+            <h1>📚 Todas as Documentações</h1>
+            <p>Lista completa de todas as documentações técnicas disponíveis:</p>
+            
+            <div class="docs-container" id="docsList">
+                <!-- As páginas serão carregadas automaticamente aqui pelo JavaScript -->
+                <div class="empty-message">
+                    <p>Carregando documentações...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Blog do Rafa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Lista de páginas com títulos e descrições
+        const pages = [
+            {
+                file: 'documentacoes-suporte.html',
+                title: 'Reset de IP no Windows',
+                description: 'Guia completo para renovar endereço IP e solucionar problemas de conexão',
+                icon: '💻'
+            },
+            {
+                file: 'mapeamento de pastas Windows.html', 
+                title: 'Mapeamento de Pastas no Windows',
+                description: 'Como mapear unidades de rede em Windows, Linux e macOS',
+                icon: '🗂️'
+            },
+            {
+                file: 'dicas-carreira.html',
+                title: 'Dicas de Carreira em TI',
+                description: 'Estratégias para crescimento e desenvolvimento profissional',
+                icon: '🎯'
+            },
+            {
+                file: 'gestao-ti.html',
+                title: 'Gestão de Tecnologia da Informação',
+                description: 'Casos reais e lições aprendidas no dia a dia profissional',
+                icon: '💼'
+            },
+            {
+                file: 'resumos-estudos.html',
+                title: 'Resumos de Estudos e Certificações',
+                description: 'Minhas anotações e resumos de estudos técnicos',
+                icon: '📚'
+            }
+        ];
+
+        function loadPagesList() {
+            const docsList = document.getElementById('docsList');
+            docsList.innerHTML = ''; // Limpa o conteúdo
+            
+            if (pages.length === 0) {
+                docsList.innerHTML = '<div class="empty-message"><p>Nenhuma documentação encontrada.</p></div>';
+                return;
+            }
+
+            pages.forEach(page => {
+                const docItem = document.createElement('div');
+                docItem.className = 'doc-item';
+                
+                docItem.innerHTML = `
+                    <a href="${page.file}" class="doc-link">
+                        <h3>${page.icon} ${page.title}</h3>
+                        <p>${page.description}</p>
+                    </a>
+                `;
+                
+                docsList.appendChild(docItem);
+            });
+        }
+
+        // Carrega a lista quando a página abre
+        document.addEventListener('DOMContentLoaded', loadPagesList);
+    </script>
+</body>
+</html>

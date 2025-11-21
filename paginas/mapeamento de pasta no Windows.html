@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapeamento de Unidade de Rede - Windows, Linux e macOS - Blog do Rafa</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <style>
+        .copy-box {
+            background: #2d3748;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            position: relative;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #3cb371;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .copy-btn:hover {
+            background: #2d8a5d;
+        }
+        
+        .step {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #3cb371;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: #1a5f3e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .tip {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .intro-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #1a5f3e;
+        }
+
+        .os-section {
+            margin: 2rem 0;
+        }
+
+        .os-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .sub-step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid #3cb371;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2><a href="../index.html" style="color: white; text-decoration: none;">Blog do Rafa 🤓</a></h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#conteudo">Conteúdo</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <div class="container">
+            <h1>🗂️ Mapeamento de Unidade de Rede - Windows, Linux e macOS</h1>
+            
+            <!-- INTRODUÇÃO -->
+            <section class="intro-section">
+                <h2>📋 Introdução ao Mapeamento de Unidades de Rede</h2>
+                <p>O <strong>mapeamento de unidades de rede</strong> permite acessar pastas compartilhadas em outros computadores ou servidores como se fossem drives locais do seu sistema.</p>
+                
+                <h3>🎯 Para que serve?</h3>
+                <ul>
+                    <li><strong>Acesso facilitado</strong> - Pastas de rede aparecem como drives locais</li>
+                    <li><strong>Produtividade</strong> - Acesso rápido a arquivos compartilhados</li>
+                    <li><strong>Colaboração</strong> - Compartilhamento de arquivos em equipe</li>
+                    <li><strong>Backup</strong> - Armazenamento centralizado de dados</li>
+                </ul>
+                
+                <h3>🔧 Protocolos Comuns:</h3>
+                <ul>
+                    <li><strong>SMB/CIFS</strong> - Windows e compatibilidade com outros sistemas</li>
+                    <li><strong>NFS</strong> - Common em sistemas Unix/Linux</li>
+                    <li><strong>AFP</strong> - Apple Filing Protocol (macOS)</li>
+                </ul>
+            </section>
+
+            <!-- WINDOWS -->
+            <section class="os-section">
+                <h2><span class="os-icon">🪟</span> Windows</h2>
+                
+                <section class="step">
+                    <h3><span class="step-number">1</span> Método Gráfico - Explorer</h3>
+                    <p><strong>Passo a passo:</strong></p>
+                    <div class="sub-step">
+                        <p>1. Abra o <strong>Explorador de Arquivos</strong></p>
+                        <p>2. Clique com botão direito em <strong>"Este Computador"</strong></p>
+                        <p>3. Selecione <strong>"Mapear unidade de rede..."</strong></p>
+                        <p>4. Preencha:</p>
+                        <ul>
+                            <li><strong>Unidade:</strong> Letra desejada (ex: Z:)</li>
+                            <li><strong>Pasta:</strong> \\servidor\pasta ou \\IP\pasta</li>
+                            <li><strong>Conectar usando credenciais diferentes:</strong> Marque se necessário</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">2</span> Método Linha de Comando - net use</h3>
+                    <p><strong>Finalidade:</strong> Mapear unidade via Prompt de Comando ou PowerShell.</p>
+                    
+                    <div class="copy-box">
+                        net use Z: \\servidor\pasta /user:usuario senha /persistent:yes
+                        <button class="copy-btn" onclick="copyToClipboard('net use Z: \\\\servidor\\pasta /user:usuario senha /persistent:yes')">Copiar</button>
+                    </div>
+                    <p><strong>Explicação:</strong></p>
+                    <ul>
+                        <li><code>Z:</code> - Letra da unidade</li>
+                        <li><code>\\servidor\pasta</code> - Caminho do compartilhamento</li>
+                        <li><code>/user:usuario senha</code> - Credenciais de acesso</li>
+                        <li><code>/persistent:yes</code> - Manter após reiniciar</li>
+                    </ul>
+
+                    <div class="copy-box">
+                        net use Z: \\192.168.1.100\shared /persistent:yes
+                        <button class="copy-btn" onclick="copyToClipboard('net use Z: \\\\192.168.1.100\\shared /persistent:yes')">Copiar</button>
+                    </div>
+                    <p><strong>Uso com IP:</strong> Mapeamento usando endereço IP diretamente</p>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">3</span> Verificar Unidades Mapeadas</h3>
+                    <p><strong>Finalidade:</strong> Listar todas as unidades de rede mapeadas.</p>
+                    
+                    <div class="copy-box">
+                        net use
+                        <button class="copy-btn" onclick="copyToClipboard('net use')">Copiar</button>
+                    </div>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">4</span> Desmapear Unidade</h3>
+                    <p><strong>Finalidade:</strong> Remover unidade de rede mapeada.</p>
+                    
+                    <div class="copy-box">
+                        net use Z: /delete
+                        <button class="copy-btn" onclick="copyToClipboard('net use Z: /delete')">Copiar</button>
+                    </div>
+                </section>
+            </section>
+
+            <!-- LINUX -->
+            <section class="os-section">
+                <h2><span class="os-icon">🐧</span> Linux</h2>
+                
+                <section class="step">
+                    <h3><span class="step-number">1</span> Instalar Pacotes Necessários</h3>
+                    <p><strong>Finalidade:</strong> Instalar cliente SMB para compartilhamentos Windows.</p>
+                    
+                    <div class="copy-box">
+                        # Ubuntu/Debian
+                        sudo apt update && sudo apt install cifs-utils smbclient
+                        <button class="copy-btn" onclick="copyToClipboard('sudo apt update && sudo apt install cifs-utils smbclient')">Copiar</button>
+                    </div>
+
+                    <div class="copy-box">
+                        # CentOS/RHEL/Fedora
+                        sudo yum install cifs-utils samba-client
+                        <button class="copy-btn" onclick="copyToClipboard('sudo yum install cifs-utils samba-client')">Copiar</button>
+                    </div>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">2</span> Montagem Manual com mount</h3>
+                    <p><strong>Finalidade:</strong> Montar compartilhamento SMB temporariamente.</p>
+                    
+                    <div class="copy-box">
+                        sudo mkdir /mnt/compartilhamento
+                        <button class="copy-btn" onclick="copyToClipboard('sudo mkdir /mnt/compartilhamento')">Copiar</button>
+                    </div>
+
+                    <div class="copy-box">
+                        sudo mount -t cifs //servidor/pasta /mnt/compartilhamento -o username=usuario,password=senha
+                        <button class="copy-btn" onclick="copyToClipboard('sudo mount -t cifs //servidor/pasta /mnt/compartilhamento -o username=usuario,password=senha')">Copiar</button>
+                    </div>
+                    <p><strong>Mais seguro (sem senha no comando):</strong></p>
+                    <div class="copy-box">
+                        sudo mount -t cifs //servidor/pasta /mnt/compartilhamento -o username=usuario
+                        <button class="copy-btn" onclick="copyToClipboard('sudo mount -t cifs //servidor/pasta /mnt/compartilhamento -o username=usuario')">Copiar</button>
+                    </div>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">3</span> Montagem Automática via fstab</h3>
+                    <p><strong>Finalidade:</strong> Montar automaticamente na inicialização.</p>
+                    
+                    <div class="copy-box">
+                        sudo nano /etc/fstab
+                        <button class="copy-btn" onclick="copyToClipboard('sudo nano /etc/fstab')">Copiar</button>
+                    </div>
+                    <p><strong>Adicione esta linha ao arquivo fstab:</strong></p>
+                    <div class="copy-box">
+                        //servidor/pasta /mnt/compartilhamento cifs username=usuario,password=senha 0 0
+                        <button class="copy-btn" onclick="copyToClipboard('//servidor/pasta /mnt/compartilhamento cifs username=usuario,password=senha 0 0')">Copiar</button>
+                    </div>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">4</span> Desmontar Compartilhamento</h3>
+                    <p><strong>Finalidade:</strong> Remover compartilhamento montado.</p>
+                    
+                    <div class="copy-box">
+                        sudo umount /mnt/compartilhamento
+                        <button class="copy-btn" onclick="copyToClipboard('sudo umount /mnt/compartilhamento')">Copiar</button>
+                    </div>
+                </section>
+            </section>
+
+            <!-- macOS -->
+            <section class="os-section">
+                <h2><span class="os-icon">🍎</span> macOS</h2>
+                
+                <section class="step">
+                    <h3><span class="step-number">1</span> Método Gráfico - Finder</h3>
+                    <p><strong>Passo a passo:</strong></p>
+                    <div class="sub-step">
+                        <p>1. Abra o <strong>Finder</strong></p>
+                        <p>2. No menu superior, clique em <strong>"Ir"</strong> → <strong>"Conectar ao Servidor"</strong> (⌘K)</p>
+                        <p>3. Digite o endereço do servidor:</p>
+                        <div class="copy-box">
+                            smb://servidor/pasta
+                            <button class="copy-btn" onclick="copyToClipboard('smb://servidor/pasta')">Copiar</button>
+                        </div>
+                        <p>4. Clique em <strong>"Conectar"</strong> e informe as credenciais</p>
+                    </div>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">2</span> Método Linha de Comando - mount_smbfs</h3>
+                    <p><strong>Finalidade:</strong> Montar via Terminal.</p>
+                    
+                    <div class="copy-box">
+                        mkdir ~/Desktop/Compartilhamento
+                        <button class="copy-btn" onclick="copyToClipboard('mkdir ~/Desktop/Compartilhamento')">Copiar</button>
+                    </div>
+
+                    <div class="copy-box">
+                        mount_smbfs //usuario:senha@servidor/pasta ~/Desktop/Compartilhamento
+                        <button class="copy-btn" onclick="copyToClipboard('mount_smbfs //usuario:senha@servidor/pasta ~/Desktop/Compartilhamento')">Copiar</button>
+                    </div>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">3</span> Montagem com IP</h3>
+                    <p><strong>Finalidade:</strong> Usar endereço IP diretamente.</p>
+                    
+                    <div class="copy-box">
+                        mount_smbfs //usuario@192.168.1.100/pasta ~/Desktop/Compartilhamento
+                        <button class="copy-btn" onclick="copyToClipboard('mount_smbfs //usuario@192.168.1.100/pasta ~/Desktop/Compartilhamento')">Copiar</button>
+                    </div>
+                    <p><strong>O sistema pedirá a senha ao executar</strong></p>
+                </section>
+
+                <section class="step">
+                    <h3><span class="step-number">4</span> Desmontar no macOS</h3>
+                    <p><strong>Finalidade:</strong> Remover compartilhamento.</p>
+                    
+                    <div class="copy-box">
+                        umount ~/Desktop/Compartilhamento
+                        <button class="copy-btn" onclick="copyToClipboard('umount ~/Desktop/Compartilhamento')">Copiar</button>
+                    </div>
+                </section>
+            </section>
+
+            <!-- DICAS E SOLUÇÃO DE PROBLEMAS -->
+            <section class="tip">
+                <h3>🎯 Dicas e Solução de Problemas:</h3>
+                
+                <div class="sub-step">
+                    <h4>Problemas Comuns no Windows:</h4>
+                    <div class="copy-box">
+                        # Verificar se o serviço está executando
+                        sc query lanmanserver
+                        <button class="copy-btn" onclick="copyToClipboard('sc query lanmanserver')">Copiar</button>
+                    </div>
+                </div>
+
+                <div class="sub-step">
+                    <h4>Testar Conectividade no Linux:</h4>
+                    <div class="copy-box">
+                        # Listar compartilhamentos disponíveis
+                        smbclient -L servidor -U usuario
+                        <button class="copy-btn" onclick="copyToClipboard('smbclient -L servidor -U usuario')">Copiar</button>
+                    </div>
+                </div>
+
+                <div class="sub-step">
+                    <h4>Verificar Montagens:</h4>
+                    <div class="copy-box">
+                        # Linux/macOS - ver montagens ativas
+                        mount | grep cifs
+                        <button class="copy-btn" onclick="copyToClipboard('mount | grep cifs')">Copiar</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="warning">
+                <strong>🔒 Segurança:</strong> Evite deixar senhas em arquivos de configuração. Use arquivos de credenciais com permissões restritas quando possível.
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Blog do Rafa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copiado!';
+                btn.style.background = '#1a5f3e';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#3cb371';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Erro ao copiar: ', err);
+                alert('Erro ao copiar o comando. Tente manualmente.');
+            });
+        }
+    </script>
+</body>
+</html>
