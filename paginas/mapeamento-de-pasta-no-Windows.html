@@ -370,41 +370,72 @@
         </div>
     </footer>
 
-    <script>
-        // Função corrigida - recebe o elemento clicado como parâmetro
-        function copyToClipboard(text, buttonElement) {
-            navigator.clipboard.writeText(text).then(function() {
-                // Feedback visual
-                const originalText = buttonElement.textContent;
-                buttonElement.textContent = '✓ Copiado!';
-                buttonElement.style.background = '#1a5f3e';
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const codeBox = this.parentElement;
+                let commandText = codeBox.textContent || codeBox.innerText;
+                commandText = commandText.replace('Copiar', '').trim();
                 
-                setTimeout(() => {
-                    buttonElement.textContent = originalText;
-                    buttonElement.style.background = '#3cb371';
-                }, 2000);
-            }).catch(function(err) {
-                console.error('Erro ao copiar: ', err);
-                alert('Erro ao copiar o comando. Tente manualmente: ' + text);
-            });
-        }
-
-        // Configura todos os botões de copiar quando a página carrega
-        document.addEventListener('DOMContentLoaded', function() {
-            const copyButtons = document.querySelectorAll('.copy-btn');
-            
-            copyButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Pega o texto do comando do elemento pai
-                    const codeBox = this.parentElement;
-                    let commandText = codeBox.textContent || codeBox.innerText;
-                    commandText = commandText.replace('Copiar', '').trim();
-                    
-                    // Chama a função de copiar
-                    copyToClipboard(commandText, this);
-                });
+                // Método ultra compatível com GitHub Pages
+                copyToClipboardFallback(commandText, this);
             });
         });
-    </script>
+        
+        function copyToClipboardFallback(text, button) {
+            // Cria um elemento temporário
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            
+            // Torna invisível
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            textArea.style.opacity = '0';
+            
+            document.body.appendChild(textArea);
+            
+            // Seleciona e copia
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                // Tenta o método antigo (funciona no GitHub Pages)
+                const successful = document.execCommand('copy');
+                
+                if (successful) {
+                    showCopyFeedback(button);
+                } else {
+                    // Fallback final - mostra o texto para copiar manualmente
+                    alert('Copie manualmente:\n\n' + text);
+                }
+            } catch (err) {
+                // Fallback para navegadores muito antigos
+                alert('Copie manualmente:\n\n' + text);
+            }
+            
+            // Limpa
+            document.body.removeChild(textArea);
+        }
+        
+        function showCopyFeedback(button) {
+            const originalText = button.textContent;
+            const originalBackground = button.style.background;
+            
+            button.textContent = '✓ Copiado!';
+            button.style.background = '#1a5f3e';
+            button.style.color = 'white';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = originalBackground;
+                button.style.color = 'white';
+            }, 2000);
+        }
+    });
+</script>
 </body>
 </html>
