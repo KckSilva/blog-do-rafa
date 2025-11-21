@@ -370,23 +370,38 @@
         </div>
     </footer>
 
-    <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                const btn = event.target;
-                const originalText = btn.textContent;
-                btn.textContent = '✓ Copiado!';
-                btn.style.background = '#1a5f3e';
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '#3cb371';
-                }, 2000);
-            }).catch(function(err) {
-                console.error('Erro ao copiar: ', err);
-                alert('Erro ao copiar o comando. Tente manualmente.');
+<script>
+    function copyToClipboard(text, element) {
+        navigator.clipboard.writeText(text).then(function() {
+            const btn = element;
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Copiado!';
+            btn.style.background = '#1a5f3e';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '#3cb371';
+            }, 2000);
+        }).catch(function(err) {
+            console.error('Erro ao copiar: ', err);
+            alert('Erro ao copiar o comando. Tente manualmente.');
+        });
+    }
+
+    // Adiciona event listeners para todos os botões de copiar
+    document.addEventListener('DOMContentLoaded', function() {
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        
+        copyButtons.forEach(button => {
+            // Pega o texto do comando do elemento anterior (a div com o código)
+            const codeElement = button.parentElement;
+            const commandText = codeElement.textContent.replace('Copiar', '').trim();
+            
+            button.addEventListener('click', function() {
+                copyToClipboard(commandText, this);
             });
-        }
-    </script>
+        });
+    });
+</script>
 </body>
 </html>
