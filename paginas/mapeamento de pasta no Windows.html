@@ -165,7 +165,7 @@
                     
                     <div class="copy-box">
                         net use Z: \\servidor\pasta /user:usuario senha /persistent:yes
-                        <button class="copy-btn" onclick="copyToClipboard('net use Z: \\\\servidor\\pasta /user:usuario senha /persistent:yes')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                     <p><strong>Explicação:</strong></p>
                     <ul>
@@ -177,7 +177,7 @@
 
                     <div class="copy-box">
                         net use Z: \\192.168.1.100\shared /persistent:yes
-                        <button class="copy-btn" onclick="copyToClipboard('net use Z: \\\\192.168.1.100\\shared /persistent:yes')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                     <p><strong>Uso com IP:</strong> Mapeamento usando endereço IP diretamente</p>
                 </section>
@@ -188,7 +188,7 @@
                     
                     <div class="copy-box">
                         net use
-                        <button class="copy-btn" onclick="copyToClipboard('net use')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </section>
 
@@ -198,7 +198,7 @@
                     
                     <div class="copy-box">
                         net use Z: /delete
-                        <button class="copy-btn" onclick="copyToClipboard('net use Z: /delete')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </section>
             </section>
@@ -214,13 +214,13 @@
                     <div class="copy-box">
                         # Ubuntu/Debian
                         sudo apt update && sudo apt install cifs-utils smbclient
-                        <button class="copy-btn" onclick="copyToClipboard('sudo apt update && sudo apt install cifs-utils smbclient')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
 
                     <div class="copy-box">
                         # CentOS/RHEL/Fedora
                         sudo yum install cifs-utils samba-client
-                        <button class="copy-btn" onclick="copyToClipboard('sudo yum install cifs-utils samba-client')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </section>
 
@@ -230,17 +230,17 @@
                     
                     <div class="copy-box">
                         sudo mkdir /mnt/compartilhamento
-                        <button class="copy-btn" onclick="copyToClipboard('sudo mkdir /mnt/compartilhamento')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
 
                     <div class="copy-box">
                         sudo mount -t cifs //servidor/pasta /mnt/compartilhamento -o username=usuario,password=senha
-                        <button class="copy-btn" onclick="copyToClipboard('sudo mount -t cifs //servidor/pasta /mnt/compartilhamento -o username=usuario,password=senha')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                     <p><strong>Mais seguro (sem senha no comando):</strong></p>
                     <div class="copy-box">
                         sudo mount -t cifs //servidor/pasta /mnt/compartilhamento -o username=usuario
-                        <button class="copy-btn" onclick="copyToClipboard('sudo mount -t cifs //servidor/pasta /mnt/compartilhamento -o username=usuario')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </section>
 
@@ -250,12 +250,12 @@
                     
                     <div class="copy-box">
                         sudo nano /etc/fstab
-                        <button class="copy-btn" onclick="copyToClipboard('sudo nano /etc/fstab')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                     <p><strong>Adicione esta linha ao arquivo fstab:</strong></p>
                     <div class="copy-box">
                         //servidor/pasta /mnt/compartilhamento cifs username=usuario,password=senha 0 0
-                        <button class="copy-btn" onclick="copyToClipboard('//servidor/pasta /mnt/compartilhamento cifs username=usuario,password=senha 0 0')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </section>
 
@@ -265,7 +265,7 @@
                     
                     <div class="copy-box">
                         sudo umount /mnt/compartilhamento
-                        <button class="copy-btn" onclick="copyToClipboard('sudo umount /mnt/compartilhamento')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </section>
             </section>
@@ -283,7 +283,7 @@
                         <p>3. Digite o endereço do servidor:</p>
                         <div class="copy-box">
                             smb://servidor/pasta
-                            <button class="copy-btn" onclick="copyToClipboard('smb://servidor/pasta')">Copiar</button>
+                            <button class="copy-btn">Copiar</button>
                         </div>
                         <p>4. Clique em <strong>"Conectar"</strong> e informe as credenciais</p>
                     </div>
@@ -295,12 +295,12 @@
                     
                     <div class="copy-box">
                         mkdir ~/Desktop/Compartilhamento
-                        <button class="copy-btn" onclick="copyToClipboard('mkdir ~/Desktop/Compartilhamento')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
 
                     <div class="copy-box">
                         mount_smbfs //usuario:senha@servidor/pasta ~/Desktop/Compartilhamento
-                        <button class="copy-btn" onclick="copyToClipboard('mount_smbfs //usuario:senha@servidor/pasta ~/Desktop/Compartilhamento')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </section>
 
@@ -310,7 +310,7 @@
                     
                     <div class="copy-box">
                         mount_smbfs //usuario@192.168.1.100/pasta ~/Desktop/Compartilhamento
-                        <button class="copy-btn" onclick="copyToClipboard('mount_smbfs //usuario@192.168.1.100/pasta ~/Desktop/Compartilhamento')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                     <p><strong>O sistema pedirá a senha ao executar</strong></p>
                 </section>
@@ -321,7 +321,7 @@
                     
                     <div class="copy-box">
                         umount ~/Desktop/Compartilhamento
-                        <button class="copy-btn" onclick="copyToClipboard('umount ~/Desktop/Compartilhamento')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </section>
             </section>
@@ -335,7 +335,7 @@
                     <div class="copy-box">
                         # Verificar se o serviço está executando
                         sc query lanmanserver
-                        <button class="copy-btn" onclick="copyToClipboard('sc query lanmanserver')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </div>
 
@@ -344,7 +344,7 @@
                     <div class="copy-box">
                         # Listar compartilhamentos disponíveis
                         smbclient -L servidor -U usuario
-                        <button class="copy-btn" onclick="copyToClipboard('smbclient -L servidor -U usuario')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </div>
 
@@ -353,7 +353,7 @@
                     <div class="copy-box">
                         # Linux/macOS - ver montagens ativas
                         mount | grep cifs
-                        <button class="copy-btn" onclick="copyToClipboard('mount | grep cifs')">Copiar</button>
+                        <button class="copy-btn">Copiar</button>
                     </div>
                 </div>
             </section>
@@ -370,38 +370,41 @@
         </div>
     </footer>
 
-<script>
-    function copyToClipboard(text, element) {
-        navigator.clipboard.writeText(text).then(function() {
-            const btn = element;
-            const originalText = btn.textContent;
-            btn.textContent = '✓ Copiado!';
-            btn.style.background = '#1a5f3e';
-            
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '#3cb371';
-            }, 2000);
-        }).catch(function(err) {
-            console.error('Erro ao copiar: ', err);
-            alert('Erro ao copiar o comando. Tente manualmente.');
-        });
-    }
+    <script>
+        // Função corrigida - recebe o elemento clicado como parâmetro
+        function copyToClipboard(text, buttonElement) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Feedback visual
+                const originalText = buttonElement.textContent;
+                buttonElement.textContent = '✓ Copiado!';
+                buttonElement.style.background = '#1a5f3e';
+                
+                setTimeout(() => {
+                    buttonElement.textContent = originalText;
+                    buttonElement.style.background = '#3cb371';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Erro ao copiar: ', err);
+                alert('Erro ao copiar o comando. Tente manualmente: ' + text);
+            });
+        }
 
-    // Adiciona event listeners para todos os botões de copiar
-    document.addEventListener('DOMContentLoaded', function() {
-        const copyButtons = document.querySelectorAll('.copy-btn');
-        
-        copyButtons.forEach(button => {
-            // Pega o texto do comando do elemento anterior (a div com o código)
-            const codeElement = button.parentElement;
-            const commandText = codeElement.textContent.replace('Copiar', '').trim();
+        // Configura todos os botões de copiar quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyButtons = document.querySelectorAll('.copy-btn');
             
-            button.addEventListener('click', function() {
-                copyToClipboard(commandText, this);
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Pega o texto do comando do elemento pai
+                    const codeBox = this.parentElement;
+                    let commandText = codeBox.textContent || codeBox.innerText;
+                    commandText = commandText.replace('Copiar', '').trim();
+                    
+                    // Chama a função de copiar
+                    copyToClipboard(commandText, this);
+                });
             });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
