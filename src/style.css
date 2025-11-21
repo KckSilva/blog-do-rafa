@@ -312,3 +312,22 @@ section {
         gap: 1rem;
     }
 }
+/* ===== REGRA PARA BOTÕES DE COPIAR ===== */
+.copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--verde-claro);
+    color: white;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.copy-btn:hover {
+    background: var(--verde-medio);
+}

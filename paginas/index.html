@@ -97,66 +97,116 @@
     </footer>
 
     <script>
-        // Lista de páginas com títulos e descrições
-        const pages = [
-            {
-                file: 'documentacoes-suporte.html',
-                title: 'Reset de IP no Windows',
-                description: 'Guia completo para renovar endereço IP e solucionar problemas de conexão',
-                icon: '💻'
-            },
-            {
-                file: 'mapeamento-de-pasta-no-windows.html', 
-                title: 'Mapeamento de Pastas no Windows',
-                description: 'Como mapear unidades de rede em Windows, Linux e macOS',
-                icon: '🗂️'
-            },
-            {
-                file: 'dicas-carreira.html',
-                title: 'Dicas de Carreira em TI',
-                description: 'Estratégias para crescimento e desenvolvimento profissional',
-                icon: '🎯'
-            },
-            {
-                file: 'gestao-ti.html',
-                title: 'Gestão de Tecnologia da Informação',
-                description: 'Casos reais e lições aprendidas no dia a dia profissional',
-                icon: '💼'
-            },
-            {
-                file: 'resumos-estudos.html',
-                title: 'Resumos de Estudos e Certificações',
-                description: 'Minhas anotações e resumos de estudos técnicos',
-                icon: '📚'
-            }
-        ];
-
-        function loadPagesList() {
-            const docsList = document.getElementById('docsList');
-            docsList.innerHTML = ''; // Limpa o conteúdo
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona evento a todos os botões de copiar
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Pega o texto do comando (elemento pai é a div.copy-box)
+                const codeBox = this.parentElement;
+                const commandText = codeBox.childNodes[0].textContent.trim();
+                
+                // Método que FUNCIONA no GitHub Pages
+                copyTextToClipboard(commandText, this);
+            });
+        });
+        
+        function copyTextToClipboard(text, button) {
+            // 1. Cria um textarea temporário
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            textArea.style.top = '0';
+            textArea.style.opacity = '0';
             
-            if (pages.length === 0) {
-                docsList.innerHTML = '<div class="empty-message"><p>Nenhuma documentação encontrada.</p></div>';
-                return;
+            // 2. Adiciona ao DOM
+            document.body.appendChild(textArea);
+            
+            // 3. Seleciona o texto
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                // 4. Usa o método antigo que FUNCIONA no GitHub Pages
+                const successful = document.execCommand('copy');
+                
+                if (successful) {
+                    // Feedback visual
+                    showSuccess(button);
+                } else {
+                    // Fallback: mostra o texto para copiar manualmente
+                    showManualCopy(text);
+                }
+            } catch (err) {
+                // Fallback para erro
+                showManualCopy(text);
+            } finally {
+                // 5. Limpa sempre
+                document.body.removeChild(textArea);
             }
-
-            pages.forEach(page => {
-                const docItem = document.createElement('div');
-                docItem.className = 'doc-item';
-                
-                docItem.innerHTML = `
-                    <a href="${page.file}" class="doc-link">
-                        <h3>${page.icon} ${page.title}</h3>
-                        <p>${page.description}</p>
-                    </a>
-                `;
-                
-                docsList.appendChild(docItem);
+        }
+        
+        function showSuccess(button) {
+            const originalText = button.textContent;
+            button.textContent = '✓ Copiado!';
+            button.style.background = '#1a5f3e';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '#3cb371';
+            }, 1500);
+        }
+        
+        function showManualCopy(text) {
+            // Cria um popup simples com o texto para copiar manualmente
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+            `;
+            
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                max-width: 500px;
+                width: 90%;
+                text-align: center;
+            `;
+            
+            popup.innerHTML = `
+                <h3>📋 Copiar Comando</h3>
+                <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; word-break: break-all;">
+                    ${text}
+                </div>
+                <p>Selecione o texto acima e use Ctrl+C para copiar</p>
+                <button onclick="this.parentElement.parentElement.remove()" style="background: #3cb371; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+                    Fechar
+                </button>
+            `;
+            
+            overlay.appendChild(popup);
+            document.body.appendChild(overlay);
+            
+            // Fecha ao clicar fora
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.remove();
+                }
             });
         }
-
-        // Carrega a lista quando a página abre
-        document.addEventListener('DOMContentLoaded', loadPagesList);
-    </script>
+    });
+</script>
 </body>
 </html>
