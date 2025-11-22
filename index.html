@@ -7,18 +7,28 @@
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
+
     <!-- Header -->
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
+
                 <div class="logo">
                     <h2>Blog do Rafa 🤓</h2>
                 </div>
+
+                <!-- BOTÃO MENU MOBILE -->
+                <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu">☰</button>
+
                 <ul class="nav-menu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#conteudo">Conteúdo</a></li>
                 </ul>
+
+                <!-- BOTÃO DARK MODE -->
+                <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">🌙</button>
+
             </div>
         </nav>
     </header>
@@ -45,6 +55,7 @@
         <div class="container">
             <h2 class="section-title">O que você encontra aqui</h2>
             <div class="content-grid">
+
                 <!-- ⚠️ APENAS ESTE CARD FOI ALTERADO ⚠️ -->
                 <a href="paginas/index.html" class="content-card">
                     <div class="card-icon">📚</div>
@@ -52,16 +63,19 @@
                     <p>Acesse todas as documentações: Reset de IP, Mapeamento de Pastas e mais.</p>
                 </a>
                 <!-- FIM DA ALTERAÇÃO -->
+
                 <a href="paginas/resumos-estudos.html" class="content-card">
                     <div class="card-icon">📚</div>
                     <h3>Resumos de Estudos</h3>
                     <p>Local onde compartilho minhas anotações dos meus estudos e certificações.</p>
                 </a>
+
                 <a href="paginas/gestao-ti.html" class="content-card">
                     <div class="card-icon">💼</div>
                     <h3>Gestão de Tecnologia da informação</h3>
                     <p>Falo um pouco sobre casos reais e lições aprendidas no dia a dia profissional.</p>
                 </a>
+
                 <a href="paginas/dicas-carreira.html" class="content-card">
                     <div class="card-icon">🎯</div>
                     <h3>Dicas de Carreira</h3>
@@ -78,6 +92,9 @@
         </div>
     </footer>
 
+    <!-- Scripts corretos -->
+    <script src="src/utils.js"></script>
     <script src="src/script.js"></script>
+
 </body>
 </html>
