@@ -142,13 +142,13 @@
                 
                 <div class="copy-box">
                     ipconfig /release
-                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /release')">Copiar</button>
+                    <button class="copy-btn" >Copiar</button>"copyToClipboard('ipconfig /release')">Copiar</button>
                 </div>
                 <p><strong>O que faz:</strong> Libera o endereço IP atual</p>
                 
                 <div class="copy-box">
                     ipconfig /renew
-                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /renew')">Copiar</button>
+                    <button class="copy-btn" >Copiar</button>"copyToClipboard('ipconfig /renew')">Copiar</button>
                 </div>
                 <p><strong>O que faz:</strong> Solicita um novo endereço IP ao servidor DHCP</p>
                 
@@ -166,7 +166,7 @@
                 
                 <div class="copy-box">
                     netsh int ip reset
-                    <button class="copy-btn" onclick="copyToClipboard('netsh int ip reset')">Copiar</button>
+                    <button class="copy-btn" >Copiar</button>"copyToClipboard('netsh int ip reset')">Copiar</button>
                 </div>
                 <p><strong>O que faz:</strong> Reseta toda a pilha TCP/IP do Windows</p>
                 
@@ -182,7 +182,7 @@
                 
                 <div class="copy-box">
                     ipconfig /flushdns
-                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /flushdns')">Copiar</button>
+                    <button class="copy-btn" >Copiar</button>"copyToClipboard('ipconfig /flushdns')">Copiar</button>
                 </div>
                 <p><strong>O que faz:</strong> Limpa o cache de resolução de nomes DNS</p>
             </section>
@@ -198,7 +198,7 @@
                     netsh int ip reset<br>
                     netsh winsock reset<br>
                     ipconfig /renew
-                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /release\nipconfig /flushdns\nnetsh int ip reset\nnetsh winsock reset\nipconfig /renew')">Copiar Tudo</button>
+                    <button class="copy-btn" >Copiar</button>"copyToClipboard('ipconfig /release\nipconfig /flushdns\nnetsh int ip reset\nnetsh winsock reset\nipconfig /renew')">Copiar Tudo</button>
                 </div>
                 
                 <div class="warning">
@@ -213,7 +213,7 @@
                 
                 <div class="copy-box">
                     ipconfig /all
-                    <button class="copy-btn" onclick="copyToClipboard('ipconfig /all')">Copiar</button>
+                    <button class="copy-btn" >Copiar</button>"copyToClipboard('ipconfig /all')">Copiar</button>
                 </div>
                 
                 <p>Procure por estas informações na saída do comando:</p>
@@ -257,31 +257,44 @@
     </footer>
 
     <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                // Feedback visual
-                const btn = event.target;
-                const originalText = btn.textContent;
-                btn.textContent = '✓ Copiado!';
-                btn.style.background = '#1a5f3e';
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '#3cb371';
-                }, 2000);
-            }).catch(function(err) {
-                console.error('Erro ao copiar: ', err);
-                alert('Erro ao copiar o comando. Tente manualmente.');
-            });
-        }
+    // Script CORRETO e TESTADO
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.copy-btn');
         
-        // Adiciona numeração automática aos passos
-        document.addEventListener('DOMContentLoaded', function() {
-            const steps = document.querySelectorAll('.step h2 .step-number');
-            steps.forEach((step, index) => {
-                step.textContent = index + 1;
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Pega o texto CORRETAMENTE
+                const parent = this.parentElement;
+                let fullText = parent.textContent;
+                let commandText = fullText.replace('Copiar', '').trim();
+                
+                // Método que FUNCIONA
+                copyText(commandText, this);
             });
         });
-    </script>
+        
+        function copyText(text, button) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                // Feedback
+                button.textContent = '✓ Copiado!';
+                button.style.background = '#1a5f3e';
+                setTimeout(() => {
+                    button.textContent = 'Copiar';
+                    button.style.background = '';
+                }, 1500);
+            } catch (err) {
+                alert('Copie manualmente:\n' + text);
+            }
+            
+            document.body.removeChild(textarea);
+        }
+    });
+</script>
 </body>
 </html>
